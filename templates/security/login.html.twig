@@ -3,8 +3,8 @@
 {% block title %}Se connecter{% endblock %}
 
 {% block body %}
-    <h1>Login</h1>
-    <form action="{{ path('login') }}" method="post">
+    <div class="header">Login</div>
+    <form class="container" action="{{ path('login') }}" method="post">
         <div>
             {% include 'components/text_input.html.twig' with { 'type': 'text', 'id': 'username','name': '_username' ,'placeholder': 'Saisir utilisateur', 'required': true } %}
         </div>

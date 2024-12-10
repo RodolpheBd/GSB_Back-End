@@ -1,9 +1,32 @@
-// Définition des variables SCSS
+// Déclaration des fonts
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';  // Utilisation d'un seul nom pour les 2 variantes
+    src: url('/fonts/JetBrainsMono/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';  // Même nom de famille pour la version bold
+    src: url('/fonts/JetBrainsMono/JetBrainsMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+// Déclaration des variables SCSS
+
 $white-color: #fff;
 $black-color: #000;
 
-
-$header-font-size: 48px;
+$header-font-size: 32px;
 $body-font-size: 18px;
 
 $component-width: 310px;
@@ -12,37 +35,55 @@ $component-height: 50px;
 $border-radius: 10px;
 $border-thickness: 2px;
 
-$title-font-family: 'montserrat', sans-serif;
+$margin-top: 100px;
+$gap-medium: 40px;
+$gap-small: 20px;
+
+$title-font-family: 'Montserrat', sans-serif;
+$body-bold-font-family: 'JetBrains Mono', monospace;
 $body-font-family: 'JetBrains Mono', monospace;
 
 body {
-    background-color: #fff;
+    background-color: $white-color;
+    display: flex;
+    gap: $gap-medium;
+    flex-direction: column;
+    align-items: center;
+    font-family: $body-font-family;
+    margin-top: $margin-top;
 }
 
-h1 {
-    font-size: 48;
+.container {
+    display: flex;
+    gap: $gap-small;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    font-size: $header-font-size;
     font-weight: bold;
-    /* font-family: montserrat, sans-serif; */
+    font-family: $title-font-family;
 }
 
 .button {
-    background-color: #000;
-    color: #fff;
-    height: 50px;
-    width: 310px;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    /* font-family: JetBrains Mono, monospace; */
-    cursor: pointer;
+    background-color: $black-color;
+    color: $white-color;
+    height: $component-height;
+    width: $component-width;
+    border-radius: $border-radius;
+    font-size: $body-font-size;
+    font-weight: bold; 
+    font-family: $body-bold-font-family;
     border: none;
+    cursor: pointer;
 }
 
 .text_input {
-    height: 50px;
-    width: 310px;
-    border-radius: 10px;
-    border: 2px solid black;
-    font-size: 18px;
-    /* font-family: JetBrains Mono, monospace; */
+    height: $component-height;
+    width: $component-width - 8px;
+    border-radius: $border-radius;
+    border: $border-thickness solid $black-color;
+    font-size: $body-font-size;
+    font-family: $body-font-family;
 }
