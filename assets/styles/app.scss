@@ -1,0 +1,48 @@
+// Définition des variables SCSS
+$white-color: #fff;
+$black-color: #000;
+
+
+$header-font-size: 48px;
+$body-font-size: 18px;
+
+$component-width: 310px;
+$component-height: 50px;
+
+$border-radius: 10px;
+$border-thickness: 2px;
+
+$title-font-family: 'montserrat', sans-serif;
+$body-font-family: 'JetBrains Mono', monospace;
+
+body {
+    background-color: #fff;
+}
+
+h1 {
+    font-size: 48;
+    font-weight: bold;
+    /* font-family: montserrat, sans-serif; */
+}
+
+.button {
+    background-color: #000;
+    color: #fff;
+    height: 50px;
+    width: 310px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    /* font-family: JetBrains Mono, monospace; */
+    cursor: pointer;
+    border: none;
+}
+
+.text_input {
+    height: 50px;
+    width: 310px;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 18px;
+    /* font-family: JetBrains Mono, monospace; */
+}

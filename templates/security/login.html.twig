@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block body %}
+    <h1>Login</h1>
+    <form action="{{ path('login') }}" method="post">
+        <div>
+            {% include 'components/text_input.html.twig' with { 'type': 'text', 'id': 'username','name': '_username' ,'placeholder': 'Saisir utilisateur', 'required': true } %}
+        </div>
+        <div>
+            {% include 'components/text_input.html.twig' with { 'type': 'password', 'id': 'password','name': '_password' ,'placeholder': 'Saisir mot de passe', 'required': true } %}
+        </div>
+        <div>
+            {% include 'components/button.html.twig' with { 'text': 'Login' } %}
+        </div>
+    </form>
+{% endblock %}

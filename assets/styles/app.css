@@ -1,3 +1,33 @@
 body {
-    background-color: skyblue;
+  background-color: #fff;
 }
+
+h1 {
+  font-size: 48;
+  font-weight: bold;
+  /* font-family: montserrat, sans-serif; */
+}
+
+.button {
+  background-color: #000;
+  color: #fff;
+  height: 50px;
+  width: 310px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  /* font-family: JetBrains Mono, monospace; */
+  cursor: pointer;
+  border: none;
+}
+
+.text_input {
+  height: 50px;
+  width: 310px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-size: 18px;
+  /* font-family: JetBrains Mono, monospace; */
+}
+
+/*# sourceMappingURL=app.css.map */
