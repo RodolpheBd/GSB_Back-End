@@ -1,18 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Se connecter{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
     <div class="header">Login</div>
-    <form class="container" action="{{ path('login') }}" method="post">
-        <div>
-            {% include 'components/text_input.html.twig' with { 'type': 'text', 'id': 'username','name': '_username' ,'placeholder': 'Saisir utilisateur', 'required': true } %}
-        </div>
-        <div>
-            {% include 'components/text_input.html.twig' with { 'type': 'password', 'id': 'password','name': '_password' ,'placeholder': 'Saisir mot de passe', 'required': true } %}
-        </div>
-        <div>
-            {% include 'components/button.html.twig' with { 'text': 'Login' } %}
-        </div>
+    <form class="form" action="{{ path('login') }}" method="post">
+        {% include 'components/text_input.html.twig' with {
+            'type': 'text',
+            'id': 'username',
+            'name': '_username',
+            'placeholder': 'Saisir utilisateur',
+            'required': true
+        } %}
+        
+        {% include 'components/text_input.html.twig' with {
+            'type': 'password',
+            'id': 'password',
+            'name': '_password',
+            'placeholder': 'Saisir mot de passe',
+            'required': true
+        } %}
+
+        <select class="form-list" name="role" id="role-select" required>
+            <option value="">Choisir un rôle</option>
+            <option value="admin">Admin</option>
+            <option value="comptabilite">Comptabilité</option>
+            <option value="utilisateur">Utilisateur</option>
+        </select>
+   
+        {% include 'components/button.html.twig' with {
+            'action': '',
+            'text': 'Login'
+        } %}
     </form>
 {% endblock %}

@@ -8,14 +8,14 @@
 }
 
 @font-face {
-    font-family: 'JetBrains Mono';  // Utilisation d'un seul nom pour les 2 variantes
+    font-family: 'JetBrainsMono-Regular';
     src: url('/fonts/JetBrainsMono/JetBrainsMono-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'JetBrains Mono';  // Même nom de famille pour la version bold
+    font-family: 'JetBrainsMono-Bold';
     src: url('/fonts/JetBrainsMono/JetBrainsMono-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
@@ -29,7 +29,7 @@ $black-color: #000;
 $header-font-size: 32px;
 $body-font-size: 18px;
 
-$component-width: 310px;
+$component-width: 350px;
 $component-height: 50px;
 
 $border-radius: 10px;
@@ -38,10 +38,13 @@ $border-thickness: 2px;
 $margin-top: 100px;
 $gap-medium: 40px;
 $gap-small: 20px;
+$padding-textinput: 15px;
 
 $title-font-family: 'Montserrat', sans-serif;
-$body-bold-font-family: 'JetBrains Mono', monospace;
-$body-font-family: 'JetBrains Mono', monospace;
+$body-bold-font-family: 'JetBrainsMono-Bold', monospace;
+$body-font-family: 'JetBrainsMono-Regular', monospace;
+
+// Déclaration des styles
 
 body {
     background-color: $white-color;
@@ -53,11 +56,20 @@ body {
     margin-top: $margin-top;
 }
 
-.container {
+.form {
     display: flex;
     gap: $gap-small;
     flex-direction: column;
     align-items: center;
+    &-list {
+        height: $component-height;
+        width: $component-width;
+        border-radius: $border-radius;
+        border: $border-thickness solid $black-color;
+        font-size: $body-font-size;
+        font-family: $body-font-family;
+        padding: 0 $padding-textinput;
+    }
 }
 
 .header {
@@ -81,9 +93,10 @@ body {
 
 .text_input {
     height: $component-height;
-    width: $component-width - 8px;
+    width: $component-width - (5px + ($padding-textinput*2));
     border-radius: $border-radius;
     border: $border-thickness solid $black-color;
     font-size: $body-font-size;
     font-family: $body-font-family;
+    padding: 0 $padding-textinput;
 }
