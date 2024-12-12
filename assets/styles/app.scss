@@ -8,14 +8,14 @@
 }
 
 @font-face {
-    font-family: 'JetBrainsMono-Regular';
+    font-family: 'JetBrainsMono';
     src: url('/fonts/JetBrainsMono/JetBrainsMono-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'JetBrainsMono-Bold';
+    font-family: 'JetBrainsMono';
     src: url('/fonts/JetBrainsMono/JetBrainsMono-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
@@ -41,8 +41,9 @@ $gap-small: 20px;
 $padding-textinput: 15px;
 
 $title-font-family: 'Montserrat', sans-serif;
-$body-bold-font-family: 'JetBrainsMono-Bold', monospace;
-$body-font-family: 'JetBrainsMono-Regular', monospace;
+// $body-bold-font-family: 'JetBrainsMono', monospace;
+$body-bold-font-family: 'JetBrainsMono', monospace;
+$body-font-family: 'JetBrainsMono', monospace;
 
 // Déclaration des styles
 
