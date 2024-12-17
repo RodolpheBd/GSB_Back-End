@@ -3,5 +3,56 @@
 {% block title %}Tableau de bord Admin{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur le tableau de bord Administrateur</h1>
+    <div class="header">Gestion des Profils</div>
+    <div class="container">
+        <div class="container-actions">
+            {% include 'components/button.html.twig' with {
+            'action': '',
+            'text': 'Créer un profil'
+            } %}
+            {% include 'components/button.html.twig' with {
+            'action': '',
+            'text': 'Modifier un profil'
+            } %}
+            {% include 'components/button.html.twig' with {
+            'action': '',
+            'text': 'Supprimer un profil'
+            } %}
+        </div>
+        <table class="container-table">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Type de profil</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1@gmail.com</td>
+                    <td>Administrateur</td>
+                </tr>
+                <tr>
+                    <td>2@gmail.com</td>
+                    <td>Comptabilite</td>
+                </tr>
+                <tr>
+                    <td>3@gmail.com</td>
+                    <td>Visiteur</td>
+                </tr>
+            </tbody>
+
+            {# <tbody>
+                {% for profil in profils %}
+                <tr>
+                    <td>{{ profil.id }}</td>
+                    <td>{{ profil.type }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3">Aucun profil trouvé.</td>
+                </tr>
+                {% endfor %}
+            </tbody> #}
+        </table>
+    </div>
 {% endblock %}

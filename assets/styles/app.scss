@@ -101,3 +101,29 @@ body {
     font-family: $body-font-family;
     padding: 0 $padding-textinput;
 }
+
+// Admin Dashboard
+
+.container {
+    display: flex;
+    gap: $gap-medium;
+    &-actions {
+        display: flex;
+        gap: $gap-small;
+        flex-direction: column;
+    }
+    &-table {
+        border-collapse: collapse;
+        box-shadow: 0 5px 50px rgba(0, 0, 0, 0.15);
+        border: $border-thickness solid $black-color; // Utilisation d'outline
+        & thead tr {
+            text-align: center;
+        }
+        & th, td {
+            padding: 10px 60px;
+        }
+        & tbody tr, th, td {
+            border: $border-thickness solid $black-color;
+        }
+    }
+}

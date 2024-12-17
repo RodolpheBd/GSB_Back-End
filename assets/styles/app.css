@@ -71,4 +71,28 @@ body {
   padding: 0 15px;
 }
 
+.container {
+  display: flex;
+  gap: 40px;
+}
+.container-actions {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.container-table {
+  border-collapse: collapse;
+  box-shadow: 0 5px 50px rgba(0, 0, 0, 0.15);
+  border: 2px solid #000;
+}
+.container-table thead tr {
+  text-align: center;
+}
+.container-table th, .container-table td {
+  padding: 10px 60px;
+}
+.container-table tbody tr, .container-table th, .container-table td {
+  border: 2px solid #000;
+}
+
 /*# sourceMappingURL=app.css.map */
