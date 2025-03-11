@@ -4,22 +4,21 @@
 
 {% block body %}
     <div class="header">Login</div>
-    <form class="form" action="{{ path('login') }}" method="post">
-        {% include 'components/text_input.html.twig' with {
-            'type': 'text',
-            'id': 'username',
-            'name': '_username',
-            'placeholder': 'Saisir utilisateur',
-            'required': true
-        } %}
+
+    {# Affichage des erreurs #}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    <form class="form" action="{{ path('login') }}" method="post" data-turbo="false">
         
-        {% include 'components/text_input.html.twig' with {
-            'type': 'password',
-            'id': 'password',
-            'name': '_password',
-            'placeholder': 'Saisir mot de passe',
-            'required': true
-        } %}
+        <input class="text_input" type="text" id="username" name="_username" placeholder="Saisir utilisateur" required>
+
+        <input class="text_input" type="password" id="password" name="_password" placeholder="Saisir mot de passe" required>    
 
         <select class="form-list" name="role" id="role-select" required>
             <option value="">Choisir un rôle</option>
@@ -27,10 +26,7 @@
             <option value="comptabilite">Comptabilité</option>
             <option value="visiteur">Visiteur</option>
         </select>
-   
-        {% include 'components/button.html.twig' with {
-            'action': '',
-            'text': 'Login'
-        } %}
+
+        <button class="button" type="submit">Login</button>
     </form>
 {% endblock %}

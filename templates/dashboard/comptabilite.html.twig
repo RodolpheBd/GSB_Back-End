@@ -6,15 +6,20 @@
     <div class="header">Gestion des Frais</div>
     <div class="container">
         <div class="container-actions">
-            {% include 'components/button.html.twig' with {
-            'action': '',
-            'text': 'Valider le Frais'
-            } %}
-            {% include 'components/button.html.twig' with {
-            'action': '',
-            'text': 'Rejeter le Frais'
-            } %}
+            <form id="validateForm" action="{{ path('validate_fee') }}" method="post">
+                <input type="hidden" id="userEmail" name="user_email">
+                <input type="hidden" id="feeId" name="fee_id">
+                <button type="submit" class="btn btn-success">Valider le Frais</button>
+            </form>
+
+            <form id="rejectForm" action="{{ path('reject_fee') }}" method="post">
+                <input type="hidden" id="userEmailReject" name="user_email">
+                <input type="hidden" id="feeIdReject" name="fee_id">
+                <button type="submit" class="btn btn-danger">Rejeter le Frais</button>
+            </form>
+
         </div>
+
         <table class="container-table">
             <thead>
                 <tr>
@@ -22,84 +27,42 @@
                     <th>Type</th>
                     <th>Date</th>
                     <th>Montant</th>
-                    <th>Détail</th>
                     <th>Justificatif</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-id="1">
-                    <td>John Doe</td>
-                    <td>Café</td>
-                    <td>16/12/2024</td>
-                    <td>2.50€</td>
-                    <td>-</td>
-                    <td>Ticket de caisse fourni</td>
-                    <td>Approuvé</td>
-                </tr>
-                <tr data-id="2">
-                    <td>Jane Doe</td>
-                    <td>Hôtel</td>
-                    <td>15/12/2024</td>
-                    <td>120€</td>
-                    <td>-</td>
-                    <td>Facture complète</td>
-                    <td>En attente</td>
-                </tr>
-                <tr data-id="3">
-                    <td>John Doe</td>
-                    <td>Hébergement</td>
-                    <td>14/12/2024</td>
-                    <td>350€</td>
-                    <td>-</td>
-                    <td>Contrat de location</td>
-                    <td>Approuvé</td>
-                </tr>
-                <tr data-id="4">
-                    <td>Jane Doe</td>
-                    <td>Déplacement</td>
-                    <td>13/12/2024</td>
-                    <td>45€</td>
-                    <td>65kms</td>
-                    <td>Justificatif incomplet</td>
-                    <td>Refusé</td>
-                </tr>
-                <tr data-id="5">
-                    <td>John Doe</td>
-                    <td>Café</td>
-                    <td>12/12/2024</td>
-                    <td>3€</td>
-                    <td>-</td>
-                    <td>Aucun justificatif</td>
-                    <td>Refusé</td>
-                </tr>
+                {# {% for fee in fees_list %} #}
+                    {# <tr data-id="{{ fee.id }}" data-email="{{ fee.user_email }}"> #}
+                        {# <td>{{ fee.user_email }}</td> 🔥 Ajoute l'email de l'utilisateur
+                        <td>{{ fee.title }}</td>
+                        <td>{{ fee.date }}</td>
+                        <td>{{ fee.price }}€</td>
+                        <td>{{ fee.image }}</td>
+                        <td>{{ fee.repay ? 'Validé' : 'Refusé' }}</td> #}
+                    {# </tr> #}
+                {# {% else %} #}
+                    {# <tr>
+                        <td colspan="6" class="no-data">Aucun frais trouvé.</td>
+                    </tr> #}
+                {# {% endfor %} #}
             </tbody>
+
         </table>
     </div>
 
     <script>
-        // JavaScript pour gérer la sélection de la ligne
         document.querySelectorAll('tr[data-id]').forEach(function(row) {
             row.addEventListener('click', function() {
-                // Supprimer la sélection précédente
-                document.querySelectorAll('tr.selected').forEach(function(selectedRow) {
-                    selectedRow.classList.remove('selected');
-                });
-
-                // Ajouter la classe "selected" à la ligne cliquée
+                document.querySelectorAll('tr.selected').forEach(r => r.classList.remove('selected'));
                 row.classList.add('selected');
 
-                // Mettre à jour l'ID du frais dans le formulaire
-                document.getElementById('fraisId').value = row.getAttribute('data-id');
-            });
-        });
-
-        // Ajouter un effet visuel de sélection pour l'utilisateur
-        document.querySelectorAll('tr').forEach(function(row) {
-            row.addEventListener('mouseover', function() {
-                row.style.cursor = 'pointer';
+                document.getElementById('userEmail').value = row.getAttribute('data-email');
+                document.getElementById('userEmailReject').value = row.getAttribute('data-email');
+                document.getElementById('feeId').value = row.getAttribute('data-id');
+                document.getElementById('feeIdReject').value = row.getAttribute('data-id');
             });
         });
     </script>
-{% endblock %}
 
+{% endblock %}

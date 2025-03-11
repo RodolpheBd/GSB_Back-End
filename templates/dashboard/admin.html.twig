@@ -1,58 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bord Admin{% endblock %}
+{% block title %}Tableau de bord Admin
+{% endblock %}
 
 {% block body %}
-    <div class="header">Gestion des Profils</div>
-    <div class="container">
-        <div class="container-actions">
-            {% include 'components/button.html.twig' with {
-            'action': '',
-            'text': 'Créer un profil'
-            } %}
-            {% include 'components/button.html.twig' with {
-            'action': '',
-            'text': 'Modifier un profil'
-            } %}
-            {% include 'components/button.html.twig' with {
-            'action': '',
-            'text': 'Supprimer un profil'
-            } %}
-        </div>
-        <table class="container-table">
-            <thead>
-                <tr>
-                    <th>Identifiant</th>
-                    <th>Type de profil</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1@gmail.com</td>
-                    <td>Administrateur</td>
-                </tr>
-                <tr>
-                    <td>2@gmail.com</td>
-                    <td>Comptabilite</td>
-                </tr>
-                <tr>
-                    <td>3@gmail.com</td>
-                    <td>Visiteur</td>
-                </tr>
-            </tbody>
+	<div class="header">Gestion des Profils</div>
+	<div class="container">
+		<div class="container-actions">
+			<button class="button btn-success" onclick="openPopup('createUserPopup')">Créer un profil</button>
+		</div>
 
-            {# <tbody>
-                {% for profil in profils %}
-                <tr>
-                    <td>{{ profil.id }}</td>
-                    <td>{{ profil.type }}</td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="3">Aucun profil trouvé.</td>
-                </tr>
-                {% endfor %}
-            </tbody> #}
-        </table>
-    </div>
+		<table class="container-table">
+			<thead>
+				<tr>
+					<th>Identifiant</th>
+					<th>Email</th>
+					<th>Type de profil</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for profil in profils %}
+					<tr>
+						<td>{{ profil.id }}</td>
+						<td>{{ profil.email }}</td>
+						<td>{{ profil.role }}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3" class="no-data">Aucun profil trouvé.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Pop-up pour Créer un utilisateur -->
+	<div id="createUserPopup" class="popup">
+		<div class="popup-content">
+			<h2 class="header">Créer un utilisateur</h2>
+			<form class="form" action="{{ path('create_user') }}" method="post">
+				<input class="text_input" type="email" name="email" placeholder="Saisir email" required>
+				<input class="text_input" type="password" name="password" placeholder="Saisir mot de passe" required>
+
+				<button class="button" type="submit">Créer</button>
+				<button class="button" type="button" onclick="closePopup('createUserPopup')">Annuler</button>
+
+			</form>
+		</div>
+	</div>
+
+	<!-- JavaScript pour gérer les popups -->
+	<script>
+		function openPopup(popupId) {
+            document.getElementById(popupId).style.display = "flex";
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = "none";
+        }
+	</script>
 {% endblock %}

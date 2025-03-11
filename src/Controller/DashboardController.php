@@ -27,24 +27,6 @@ class DashboardController extends AbstractController
         throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette section.');
     }
 
-    // Tableau de bord pour les Admins
-    #[Route('/admin', name: 'admin_dashboard')]
-    public function adminDashboard(): Response
-    {
-        return $this->render('dashboard/admin.html.twig', [
-            'page_title' => 'Tableau de bord Admin',
-        ]);
-    }
-
-    // Tableau de bord pour les Comptables
-    #[Route('/comptabilite', name: 'comptabilite_dashboard')]
-    public function comptabiliteDashboard(): Response
-    {
-        return $this->render('dashboard/comptabilite.html.twig', [
-            'page_title' => 'Tableau de bord Comptabilité',
-        ]);
-    }
-
     // Tableau de bord pour les Visiteurs
     #[Route('/visiteur', name: 'visiteur_dashboard')]
     public function visiteurDashboard(): Response

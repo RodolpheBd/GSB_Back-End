@@ -20,5 +20,15 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    Kreait\Firebase\Factory:
+        class: Kreait\Firebase\Factory
+        calls:
+            - method: 'withServiceAccount'
+              arguments:
+                  - '%kernel.project_dir%/config/firebase_credentials.json'
+
+    Kreait\Firebase\Auth:
+        factory: ['@Kreait\Firebase\Factory', 'createAuth']
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
