@@ -26,13 +26,4 @@ class DashboardController extends AbstractController
         // Si aucun rôle ne correspond, rediriger vers une page par défaut ou générer une erreur
         throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette section.');
     }
-
-    // Tableau de bord pour les Visiteurs
-    #[Route('/visiteur', name: 'visiteur_dashboard')]
-    public function visiteurDashboard(): Response
-    {
-        return $this->render('dashboard/visiteur.html.twig', [
-            'page_title' => 'Tableau de bord Visiteur',
-        ]);
-    }
 }

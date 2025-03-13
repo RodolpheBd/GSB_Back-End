@@ -17,12 +17,12 @@ class FirebaseService
     {
 
         $factory = (new Factory)
-            ->withServiceAccount('GSB_Symfony\config\firebase_credentials.json');
+            ->withServiceAccount('C:\Users\Rodolphe\Projects\GSB_Back-End\config\firebase_credentials.json');
 
         $this->database = $factory->createDatabase();
         $this->auth = $factory->createAuth();
         $this->firestore = new FirestoreClient([
-            'keyFilePath' => 'GSB_Symfony\config\firebase_credentials.json' // 🔥 Assure-toi que le chemin est correct
+            'keyFilePath' => 'C:\Users\Rodolphe\Projects\GSB_Back-End\config\firebase_credentials.json'
         ]);
     }
 
@@ -73,10 +73,37 @@ class FirebaseService
     {
         $feesList = [];
         try {
-            $users = $this->firestore->collection('users')->documents();
+            error_log("🔹 Début de getAllFees()");
+
+            try {
+                $userTest = $this->firestore->collection('users')->document('rodolphe@gmail.com')->snapshot();
+                if (!$userTest->exists()) {
+                    error_log("❌ L'utilisateur 'rodolphe@gmail.com' n'existe pas !");
+                } else {
+                    error_log("✅ L'utilisateur 'rodolphe@gmail.com' est bien récupéré !");
+                }
+            } catch (\Throwable $e) {
+                error_log("❌ ERREUR Firestore utilisateur : " . $e->getMessage());
+            }
+            
+            
+            
+            try {
+                error_log("🟢 Début du test Firestore");
+                $users = $this->firestore->collection('users')->documents();
+                error_log("🟡 Firestore a répondu !");
+            } catch (\Throwable $e) {
+                error_log("❌ ERREUR LORS DE LA RÉCUPÉRATION : " . $e->getMessage());
+            }
+            
+            error_log("🔹 Utilisateurs récupérés");
+
             foreach ($users as $user) {
-                $userEmail = $user->id(); 
+                $userEmail = $user->id();
+                error_log("🔹 Traitement de l'utilisateur : " . $userEmail);
+
                 $fees = $this->firestore->collection("users/{$userEmail}/Fees")->documents();
+                error_log("🔹 Frais récupérés pour $userEmail");
 
                 foreach ($fees as $fee) {
                     $data = $fee->data();
@@ -85,11 +112,15 @@ class FirebaseService
                     $feesList[] = $data;
                 }
             }
+
+            error_log("✅ Fin de getAllFees() avec " . count($feesList) . " frais.");
         } catch (\Exception $e) {
+            error_log("❌ ERREUR dans getAllFees() : " . $e->getMessage());
             return [];
         }
         return $feesList;
     }
+
 
     public function updateFeeStatus(string $email, string $feeId, bool $status): void
     {
@@ -102,5 +133,4 @@ class FirebaseService
             // Log ou gestion de l'erreur
         }
     }
-
 }

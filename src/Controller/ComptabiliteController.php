@@ -20,9 +20,9 @@ class ComptabiliteController extends AbstractController
     #[Route('/comptabilite', name: 'comptabilite_dashboard')]
     public function index(): Response
     {
-        // $feesList = $this->firebaseService->getAllFees();
+        $feesList = $this->firebaseService->getAllFees();
         return $this->render('dashboard/comptabilite.html.twig', [
-            // 'fees_list' => $feesList,
+            'fees_list' => $feesList,
             'page_title' => 'Tableau de bord Comptable',
 
         ]);

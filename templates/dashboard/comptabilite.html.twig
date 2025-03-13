@@ -17,7 +17,6 @@
                 <input type="hidden" id="feeIdReject" name="fee_id">
                 <button type="submit" class="btn btn-danger">Rejeter le Frais</button>
             </form>
-
         </div>
 
         <table class="container-table">
@@ -32,20 +31,20 @@
                 </tr>
             </thead>
             <tbody>
-                {# {% for fee in fees_list %} #}
-                    {# <tr data-id="{{ fee.id }}" data-email="{{ fee.user_email }}"> #}
-                        {# <td>{{ fee.user_email }}</td> 🔥 Ajoute l'email de l'utilisateur
+                {% for fee in fees_list %}
+                    <tr data-id="{{ fee.id }}" data-email="{{ fee.user_email }}">
+                        <td>{{ fee.user_email }}</td>
                         <td>{{ fee.title }}</td>
                         <td>{{ fee.date }}</td>
                         <td>{{ fee.price }}€</td>
                         <td>{{ fee.image }}</td>
-                        <td>{{ fee.repay ? 'Validé' : 'Refusé' }}</td> #}
-                    {# </tr> #}
-                {# {% else %} #}
-                    {# <tr>
+                        <td>{{ fee.status == 'Validé' ? 'Validé' : 'Refusé' }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
                         <td colspan="6" class="no-data">Aucun frais trouvé.</td>
-                    </tr> #}
-                {# {% endfor %} #}
+                    </tr>
+                {% endfor %}
             </tbody>
 
         </table>
