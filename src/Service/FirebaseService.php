@@ -85,9 +85,9 @@ class FirebaseService
             } catch (\Throwable $e) {
                 error_log("❌ ERREUR Firestore utilisateur : " . $e->getMessage());
             }
-            
-            
-            
+
+
+
             try {
                 error_log("🟢 Début du test Firestore");
                 $users = $this->firestore->collection('users')->documents();
@@ -95,7 +95,7 @@ class FirebaseService
             } catch (\Throwable $e) {
                 error_log("❌ ERREUR LORS DE LA RÉCUPÉRATION : " . $e->getMessage());
             }
-            
+
             error_log("🔹 Utilisateurs récupérés");
 
             foreach ($users as $user) {
@@ -132,5 +132,11 @@ class FirebaseService
         } catch (\Exception $e) {
             // Log ou gestion de l'erreur
         }
+    }
+
+    public function addFeeData(string $email, array $data): void
+    {
+        $reference = $this->firestore->collection("users/{$email}/Fees");
+        $reference->add($data);
     }
 }
